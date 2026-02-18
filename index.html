@@ -1,275 +1,391 @@
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1"
-/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <title>نموذج شركة منازل للصيانة</title>
+<head>
+<meta charset="UTF-8">
+<title>MANAZEL</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        direction: rtl;
-        background-color: rgb(230, 230, 230);
-      }
+<style>
+body{
+    font-family: Arial;
+    margin:20px;
+    background:#f5f5f5;
+    direction:rtl;
+}
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+.logo{
+    max-width: 200px;
+    display: block;
+    margin: auto 0 20px 0;
+    margin-right: auto;
+    border-radius: 5%;
+}
+.box{
+    background:white;
+    padding:21px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    margin-bottom:15px;
+}
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:10px;
+}
+input,textarea,select,button{
+    padding:8px;
+    margin:5px 0;
+    width:100%;
+}
+button{
+    background:#0077cc;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    background:white;
+    direction:ltr; 
+}
+th,td{
+    border:1px solid #777;
+    padding:6px;
+    text-align:center;
+    font-size:14px;
+}
+th{background:#ddd;}
+.project-row{
+    background:#0033cc;
+    color:white;
+    font-weight:bold;
+}
+.step-row{background:#ccffcc;}
+.hidden{display:none;}
+.delete-btn{background:red;}
+</style>
+</head>
+<body>
 
-      .hidden {
-        display: none;
-      }
+<div class="container">
+<div id="inputPage">
 
-      .container {
-        max-width: 900px;
-        margin: auto;
-      }
+<div class="box">
+<h3>بيانات المشروع</h3>
 
-      label {
-        font-weight: bold;
-        margin-top: 10px;
-        display: block;
-      }
+<label>اسم العميل</label>
+<input id="clientName">
 
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #777;
-      }
+<label>الموضوع</label>
+<input id="subject">
 
-      .btn {
-        background: #0077cc;
-        color: white;
-        padding: 12px 20px;
-        margin-top: 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-      }
+<label>موقع المشروع</label>
+<input id="projectLocation">
 
-      .btn:hover {
-        background: #005fa3;
-      }
+<label>تاريخ الإصدار</label>
+<input type="date" id="issueDate">
 
-      /* تنسيق الصفحة النهائية */
-      .header {
-        text-align: center;
-        margin-bottom: 25px;
-      }
+<label>تاريخ بداية العمل</label>
+<input type="date" id="startDate">
 
-      .logo {
-        width: 120px;
-      }
+<label>تاريخ نهاية العمل</label>
+<input type="date" id="endDate">
 
-      .company-name {
-        font-size: 22px;
-        font-weight: bold;
-      }
+<label>المدة المتوقعة</label>
+<input id="expectedDuration">
 
-      .fixed-subtitle {
-        font-size: 16px;
-        margin-top: 5px;
-      }
+<label>رقم المشروع</label>
+<input id="projectNumber">
+</div>
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-      }
-      table th,
-      table td {
-        border: 1px solid #555;
-        padding: 8px;
-        text-align: center;
-      }
+<div class="box">
+<h3>بيانات العمال</h3>
 
-      .box {
-        border: 1px solid #444;
-        padding: 15px;
-        border-radius: 8px;
-        margin-top: 15px;
-      }
+<label>عدد العمال</label>
+<input id="workersCount">
 
-      .section-title {
-        margin-top: 20px;
-        font-size: 18px;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <!-- ------------------   صفحة إدخال البيانات   ------------------ -->
-      <div id="formPage">
-        <h2>مرحبا / عبد العزيز _ ادخل بيانت البطاقة :</h2>
+<label>عدد الفنيين</label>
+<input id="techniciansCount">
 
-        <label>اسم الشخص:</label>
-        <input id="personName" />
+<label>عدد المشرفين</label>
+<input id="supervisorsCount">
 
-        <label>الموضوع:</label>
-        <input id="subject" />
+<label>أرقام التواصل</label>
+<input id="contactNumbers">
+</div>
 
-        <label>موقع المشروع:</label>
-        <input id="projectLocation" />
+<div class="box">
+<h3>المواد والكميات</h3>
+<label>كل مادة في سطر بالشكل التالي:</label>
+<textarea id="materials" placeholder=" الاسم | الكمية | المدة | ملاحظات "></textarea>
+</div>
 
-        <label>تاريخ الإصدار:</label>
-        <input type="date" id="issueDate" />
+<div class="box">
+<h3>إضافة عمل زمني</h3>
 
-        <label>تاريخ بداية العمل:</label>
-        <input type="date" id="startDate" />
+<label>اسم العمل</label>
+<input id="projectName">
 
-        <label>تاريخ نهاية العمل:</label>
-        <input type="date" id="endDate" />
+<label>تاريخ بداية العمل</label>
+<input type="date" id="projectStart">
 
-        <label>المدة المتوقعة:</label>
-        <input id="duration" />
+<label>مدة العمل (عدد الأيام)</label>
+<input type="number" id="projectDuration">
 
-        <label>رقم المشروع:</label>
-        <input id="projectNumber" />
+<button onclick="addProject()">إضافة عمل</button>
 
-        <label>عدد العمال:</label>
-        <input id="workers" />
+<hr>
 
-        <label>عدد الفنيين:</label>
-        <input id="techs" />
+<label>اختر العمل لإضافة خطوة له</label>
+<select id="projectSelect">
+<option value="" disabled selected>Select Activity</option>
+</select>
 
-        <label>عدد المشرفين:</label>
-        <input id="managers" />
+<label>اسم الخطوة</label>
+<input id="stepName">
 
-        <label>أرقام التواصل:</label>
-        <input id="phones" />
+<label>مدة الخطوة (عدد الأيام)</label>
+<input type="number" id="stepDuration">
 
-        <label
-          >المواد والكميات (اكتب كل مادة في سطر: الاسم | الكمية | المدة |
-          ملاحظات):</label
-        >
-        <textarea id="materials" rows="6"></textarea>
+<button onclick="addStep()">إضافة خطوة</button>
+</div>
 
-        <button class="btn" onclick="showResult()">NEXT</button>
-      </div>
+<table>
+<thead>
+<tr>
+<th>Activity ID</th>
+<th>Activity Name</th>
+<th>Original Duration (Days)</th>
+<th>Start Date</th>
+<th>Finish Date</th>
+<th>Delete</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
 
-      <!-- ------------------   صفحة عرض البيانات النهائية   ------------------ -->
-      <div id="resultPage" class="hidden">
-        <div class="header">
-          <img src="11.png" class="logo" >
-          <div class="company-name">شركة منازل للصيانة</div>
-          <div class="fixed-subtitle">
-            شركة منازل للصيانة: حلول مهنية عالية الجودة
-          </div>
-        </div>
+<button onclick="generateFinal()">عرض النتيجة النهائية</button>
 
-        <p>السلام عليكم ورحمة الله وبركاته،</p>
+</div>
 
-        <p>
-          سعادة العميل /
-          <span id="out_personName" style="font-weight: bold"></span>
-        </p>
+<div id="finalPage" class="hidden"></div>
 
-        <p>
-          الموضوع:
-          <span id="out_subject" style="font-weight: bold"></span>
-        </p>
+</div>
 
-        <hr />
+<script>
 
-        <div class="section-title">بيانات المشروع:</div>
+let projects=[];
+let counter=1;
 
-        <div class="box">
-          <p>موقع المشروع: <strong id="out_projectLocation"></strong></p>
-          <p>تاريخ الإصدار: <strong id="out_issueDate"></strong></p>
-          <p>تاريخ بداية العمل: <strong id="out_startDate"></strong></p>
-          <p>تاريخ نهاية العمل: <strong id="out_endDate"></strong></p>
-          <p>المدة المتوقعة: <strong id="out_duration"></strong></p>
-          <p>رقم المشروع: <strong id="out_projectNumber"></strong></p>
-        </div>
+function formatDate(d){
+    return d.toISOString().split("T")[0];
+}
 
-        <div class="section-title">بيانات العمال:</div>
+function addProject(){
+    const name=projectName.value;
+    const start=new Date(projectStart.value);
+    const duration=parseInt(projectDuration.value);
+    if(!name||!projectStart.value||!duration)return;
 
-        <div class="box">
-          <p>عدد العمال: <strong id="out_workers"></strong></p>
-          <p>عدد الفنيين: <strong id="out_techs"></strong></p>
-          <p>عدد المشرفين: <strong id="out_managers"></strong></p>
-          <p>أرقام التواصل: <strong id="out_phones"></strong></p>
-        </div>
+    const finish=new Date(start);
+    finish.setDate(start.getDate()+duration);
 
-        <div class="section-title">جدول المواد والكميات:</div>
+    const id="A"+counter++;
 
-        <table id="materialsTable">
-          <thead>
-            <tr>
-              <th>اسم المادة</th>
-              <th>الكمية</th>
-              <th>المدة</th>
-              <th>ملاحظات</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+    projects.push({id,name,start,finish,duration,steps:[]});
+    
+    updateSelect();
+    render();
 
-        <p style="margin-top: 40px; font-weight: bold">
-          وتفضلوا بقبول فائق الاحترام والتقدير…
-          <br />
-          شركة منازل للصيانة
-        </p>
-      </div>
-    </div>
+    // اختيار آخر عمل تلقائياً
+    projectSelect.value = id;
 
-    <!-- ------------------   JavaScript   ------------------ -->
-    <script>
-      function showResult() {
-        // إخفاء الفورم
-        document.getElementById("formPage").classList.add("hidden");
-        // إظهار صفحة النتائج
-        document.getElementById("resultPage").classList.remove("hidden");
+    // تفريغ الحقول بعد الإضافة
+    projectName.value="";
+    projectStart.value="";
+    projectDuration.value="";
+}
 
-        // نسخ القيم من الفورم إلى أماكنها
-        const fields = [
-          "personName",
-          "subject",
-          "projectLocation",
-          "issueDate",
-          "startDate",
-          "endDate",
-          "duration",
-          "projectNumber",
-          "workers",
-          "techs",
-          "managers",
-          "phones",
-        ];
+function addStep(){
+    const pid=projectSelect.value;
+    const name=stepName.value;
+    const duration=parseInt(stepDuration.value);
+    if(!pid||!name||!duration)return;
 
-        fields.forEach((id) => {
-          document.getElementById(
-            "out_" + id
-          ).textContent = document.getElementById(id).value;
+    const p=projects.find(x=>x.id===pid);
+    if(!p)return;
+
+    let start;
+    if(p.steps.length===0){
+        start=new Date(p.start);
+    }else{
+        const lastStep=p.steps[p.steps.length-1];
+        start=new Date(lastStep.finish);
+    }
+
+    const finish=new Date(start);
+    finish.setDate(start.getDate()+duration);
+
+    if(finish > p.finish){
+        alert("Step duration exceeds project duration");
+        return;
+    }
+
+    p.steps.push({
+        id:pid+"-"+(p.steps.length+1),
+        name,
+        duration,
+        start,
+        finish
+    });
+
+    render();
+}
+
+function deleteStep(pid,index){
+    const p=projects.find(x=>x.id===pid);
+    p.steps.splice(index,1);
+
+    let currentStart=new Date(p.start);
+    p.steps.forEach(step=>{
+        step.start=new Date(currentStart);
+        step.finish=new Date(currentStart);
+        step.finish.setDate(step.start.getDate()+step.duration);
+        currentStart=new Date(step.finish);
+    });
+
+    render();
+}
+
+function updateSelect(){
+    projectSelect.innerHTML='<option value="" disabled selected>Select Activity</option>';
+    projects.forEach(p=>{
+        projectSelect.innerHTML+=`<option value="${p.id}">${p.name}</option>`;
+    });
+}
+
+function render(){
+    tableBody.innerHTML="";
+    projects.forEach(p=>{
+        tableBody.innerHTML+=`
+        <tr class="project-row">
+        <td>${p.id}</td>
+        <td>${p.name}</td>
+        <td>${p.duration}</td>
+        <td>${formatDate(p.start)}</td>
+        <td>${formatDate(p.finish)}</td>
+        <td></td>
+        </tr>`;
+
+        p.steps.forEach((s,i)=>{
+            tableBody.innerHTML+=`
+            <tr class="step-row">
+            <td>${s.id}</td>
+            <td>${s.name}</td>
+            <td>${s.duration}</td>
+            <td>${formatDate(s.start)}</td>
+            <td>${formatDate(s.finish)}</td>
+            <td><button class="delete-btn" onclick="deleteStep('${p.id}',${i})">Delete</button></td>
+            </tr>`;
         });
+    });
+}
 
-        // معالجة جدول المواد
-        const materialsText = document.getElementById("materials").value.trim();
-        const rows = materialsText.split("\n");
+function generateFinal(){
 
-        const tbody = document.querySelector("#materialsTable tbody");
-        tbody.innerHTML = "";
+document.getElementById("inputPage").classList.add("hidden");
+const final=document.getElementById("finalPage");
+final.classList.remove("hidden");
 
-        rows.forEach((line) => {
-          const parts = line.split("|").map((s) => s.trim());
-          if (parts.length >= 4) {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${parts[0]}</td>
-                <td>${parts[1]}</td>
-                <td>${parts[2]}</td>
-                <td>${parts[3]}</td>
-            `;
-            tbody.appendChild(tr);
-          }
-        });
-      }
-    </script>
+let html=`<img src="logo.jpg" alt="logo" class="logo">
+<div class="box"><h3>بيانات المشروع</h3>
+<p>العميل : ${clientName.value}</p>
+<p>الموضوع : ${subject.value}</p>
+<p>الموقع : ${projectLocation.value}</p>
+<p>تاريخ الاصدار : ${issueDate.value}</p>
+<p>بداية العمل : ${startDate.value}</p>
+<p>نهاية العمل : ${endDate.value}</p>
+<p>المدة المتوقعة : ${expectedDuration.value}</p>
+<p>رقم المشروع : ${projectNumber.value}</p>
+</div>`;
 
-  </body>
+html+=`<div class="box"><h3>بيانات العمال</h3>
+<p>عدد العمال : ${workersCount.value}</p>
+<p>عدد الفنيين : ${techniciansCount.value}</p>
+<p>عدد المشرفين : ${supervisorsCount.value}</p>
+<p>ارقام التواصل : ${contactNumbers.value}</p>
+</div>`;
+
+html+=`<div class="box"><h3>المواد</h3><pre>${materials.value}</pre></div>`;
+let materialsTable =`
+<div class="box">
+<h3>المواد</h3>
+<table style="direction:rtl;">
+<tr>
+<th>اسم المادة</th>
+<th>الكمية</th>
+<th>المدة</th>
+<th>ملاحظات</th>
+</tr>`;
+let lines =materials.value.split("\n");
+lines.forEach(line=>{
+    if(line.trim() !== ""){
+        let cols = line.split("|");
+        materialsTable += `
+        <tr>
+            <td>${cols[0] ? cols [0].trim() :
+                ""}</td>
+            <td>${cols[1] ? cols [1].trim() :
+                ""}</td>
+            <td>${cols[2] ? cols [2].trim() :
+                ""}</td>
+            <td>${cols[3] ? cols [3].trim() :
+                ""}</td>
+        </tr>`;
+    }
+});
+materialsTable += `</table></div>`;
+html += materialsTable;
+
+html+=`<div class="box"><h3>الجدول الزمني</h3>
+<table>
+<tr>
+<th>Activity ID</th>
+<th>Activity Name</th>
+<th>Original Duration (Days)</th>
+<th>Start Date</th>
+<th>Finish Date</th>
+</tr>`;
+
+projects.forEach(p=>{
+html+=`<tr class="project-row">
+<td>${p.id}</td><td>${p.name}</td><td>${p.duration}</td>
+<td>${formatDate(p.start)}</td><td>${formatDate(p.finish)}</td>
+</tr>`;
+p.steps.forEach(s=>{
+html+=`<tr>
+<td>${s.id}</td><td>${s.name}</td><td>${s.duration}</td>
+<td>${formatDate(s.start)}</td><td>${formatDate(s.finish)}</td>
+</tr>`;
+});
+});
+
+html+=`</table></div>
+<button onclick="downloadPDF()">Download PDF</button>`;
+
+final.innerHTML=html;
+}
+
+function downloadPDF(){
+html2pdf().from(document.getElementById("finalPage")).save("MANAZEL_Project.pdf");
+}
+
+</script>
+</body>
 </html>
